@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { Boiler } from "../../entities/Boiler";
 import styles from "./../../styles/Styles.module.css";
-import Link from "next/link";
 interface Props {
   boilers: Boiler[];
 }
+
 export const BoilersList = ({ boilers }: Props) => {
   return (
     <>
@@ -18,10 +19,29 @@ export const BoilersList = ({ boilers }: Props) => {
               <Link href={`/boilers/edit/${boiler.id}`}>
                 <a>Edit ✍</a>
               </Link>
+              <button onClick={deleteOnClickHandler(boiler)}>Delete 🗑</button>
             </div>
           );
         })}
       </div>
     </>
   );
+};
+
+const deleteOnClickHandler = (boiler: Boiler) => {
+  return async () => {
+    if (window.confirm("Are you sure you want to delete this item? 🚧")) {
+      const response = await fetch(`api/boilers/delete/${boiler.id}`, {
+        method: "DELETE",
+      });
+
+      const {
+        payload: { status, msg },
+      } = await response.json();
+
+      if (status === "error") return alert(msg);
+
+      window.location.reload();
+    }
+  };
 };
