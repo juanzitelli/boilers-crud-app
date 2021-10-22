@@ -14,7 +14,7 @@ const AddBoiler: NextApiHandler = ({ body, method }, res) => {
         JSON.stringify(updatedBoilers)
       );
 
-      return res.send({
+      return res.status(200).send({
         status: "ok",
         payload: {
           item: boiler,

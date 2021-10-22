@@ -3,7 +3,7 @@ import boilers from "./../../../mocks/boilers.json";
 const Boilers: NextApiHandler = (req, res) => {
   switch (req.method) {
     case "GET":
-      return res.send({
+      return res.status(200).send({
         status: "ok",
         payload: {
           list: boilers,

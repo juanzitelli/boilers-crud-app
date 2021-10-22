@@ -10,7 +10,7 @@ const SingleBoiler: NextApiHandler = (req, res) => {
       const boiler = boilers.find(({ id }: Boiler) => id === boilerId);
 
       if (boiler) {
-        return res.send({
+        return res.status(200).send({
           status: "ok",
           payload: {
             item: boiler,
@@ -18,7 +18,7 @@ const SingleBoiler: NextApiHandler = (req, res) => {
         });
       }
 
-      return res.send({
+      return res.status(404).send({
         status: "error",
         msg: `No item found with ID: ${boilerId}`,
       });

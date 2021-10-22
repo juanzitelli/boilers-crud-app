@@ -23,7 +23,7 @@ const UpdateBoiler: NextApiHandler = ({ body, query, method }, res) => {
           JSON.stringify(updatedBoilers)
         );
 
-        return res.send({
+        return res.status(200).send({
           status: "ok",
           payload: {
             item: foundBoiler,
@@ -31,7 +31,7 @@ const UpdateBoiler: NextApiHandler = ({ body, query, method }, res) => {
         });
       }
 
-      return res.send({
+      return res.status(404).send({
         status: "error",
         msg: `No item found with ID: ${boilerId}`,
       });
