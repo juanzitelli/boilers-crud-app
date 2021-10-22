@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import useSwr from "swr";
 import { EditBoilerForm } from "../../../components/boilers/forms/EditBoilerForm";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { fetcher } from "../../../utilities/fetcher";
 
 export default function EditBoiler() {
   const {

@@ -1,7 +1,6 @@
 import useSWR from "swr";
 import { BoilersList } from "../../components/boilers/BoilersList";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { fetcher } from "../../utilities/fetcher";
 
 export default function Boilers() {
   const { data, error } = useSWR("/api/boilers/", fetcher);
